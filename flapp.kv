@@ -1,0 +1,53 @@
+#:import Window kivy.core.window.Window
+
+<GameManager>:
+    Screen:
+        name: 'home'
+        Button:
+            text: 'PLAY FLAPPY KIWI'
+            halign: 'center'
+            valign: 'middle'
+            font_size: 100
+            text_size: self.size
+            on_release: root.current = 'game'; game.reset(); game.label_opacity = 0
+    Screen:
+        name: 'game'
+        Game:
+            id: game
+
+<Game>:
+    Kiwi:
+        id: kiwi 
+    Label:
+        id: label
+        opacity: root.label_opacity
+        text: 'FAIL'
+        font_size: 200
+        color: (1, 0, 0, 1)
+    Label:
+        id: Label
+        text: str(int(root.num))
+        font_size: 100
+        color: (0, 0, 1, 1)
+        pos_hint: {'x': 0.4, 'y': 0.7}
+        size_hint: 0.2, 0.2
+
+<Kiwi>:
+    height_frac: 0.5
+    size_hint: 0.1, 0.1
+    pos_hint: {'x': 0.05, 'y': root.height_frac}
+    source: './Twicelogo.png'
+    allow_stretch: True
+    keep_ratio: False
+
+<Pole>:
+    size_hint: 0.2, None
+    height: Window.size[1]
+    pos_hint: {'x': self.dist, 'y': self.hfrac}
+    velocity: -0.4
+    canvas:
+        Color:
+            rgba: 1, 1, 0, 1
+        Rectangle:
+            size: root.size
+            pos: root.pos
