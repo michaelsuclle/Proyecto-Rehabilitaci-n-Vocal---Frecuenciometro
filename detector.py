@@ -48,7 +48,7 @@ class AudioStream(object):
 			data_int = np.frombuffer(data, dtype = 'h')
 			
 			#poniendo los valores enteros de dataint en un arreglo
-			data_np = np.array(data_int, dtype = 'h')
+			#data_np = np.array(data_int, dtype = 'h')
 			
 			#calculo de la FFT
 			yf = np.fft.fft(data_int)
@@ -70,11 +70,12 @@ class AudioStream(object):
 			#deteccion de la nota musical en un minimo de rengo de frecuencia
 			tono = f_vec[max_loc]# para que concuerde
 
-			#print(tono)
+			print(tono)
+			'''
 			if tono <= 31.23:
 				print("Esas notas son muy graves")
 			elif tono <=  33.6756 : #OCTAVA 1
-			    print("x1 DO")
+				print("x1 DO")
 			elif tono <=  35.678 :
 				print("x1 DO#")
 			elif tono <=  37.7995 :
@@ -219,7 +220,7 @@ class AudioStream(object):
 				print("x6 SI")
 			elif f_vec[max_loc] <= 3000:
 				print("Eres un prodigio del sonido")
-
+'''
 
 if __name__ == '__main__': ##  AQUI aqui hay un error que debemos corregir
 	AudioStream()
